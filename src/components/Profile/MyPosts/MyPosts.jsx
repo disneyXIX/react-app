@@ -12,6 +12,7 @@ const MyPosts = () => {
 				<div className='{s.posts}'>
 					<Post messages='Hi,it`s my first post!' />
 					<Post messages='Today is the best day in my life' />
+					<Post messages='Hello' />
 				</div>
 			</div>
 		</div>
