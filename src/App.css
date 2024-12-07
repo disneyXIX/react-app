@@ -7,3 +7,14 @@
 	grid-template-columns: 2fr 10fr;
 	grid-gap: 1px;
 }
+
+.app-wrapper-content {
+	grid-area: content;
+	background-color: rgb(208, 109, 133);
+}
+
+.app-wrapper-content img {
+	width: 85vw;
+	height: 100vh;
+	object-fit: cover;
+}
