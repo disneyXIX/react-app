@@ -1,1 +1,43 @@
+.dialogs {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+	font-weight: 300;
+	background: linear-gradient(to right, #f8b6d1, #f4d5e0);
+	border-radius: 0px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	color: #333;
+	font-family: 'Roboto', sans-serif;
+}
 
+.dialogsItems {
+	padding: 10px;
+	border-right: 2px solid #000000;
+}
+
+.messages {
+	padding: 10px;
+	color: #444;
+	font-size: 0.9rem;
+}
+
+.dialog {
+	cursor: pointer;
+	font-size: smaller;
+	padding: 5px;
+	border-radius: 5px;
+	transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.dialog:hover {
+	background: #ffe0e9;
+	transform: scale(1.05);
+}
+
+.active {
+	font-size: medium;
+	font-weight: 600;
+	color: #ff0077;
+	background: #fcd0df;
+	border-radius: 5px;
+}
