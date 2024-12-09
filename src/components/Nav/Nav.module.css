@@ -2,15 +2,23 @@
 	color: whitesmoke;
 	text-decoration: none;
 	font-size: small;
+	transition: color 0.5s ease, font-size 0.5s ease;
+}
+
+.item a:hover {
+	color: rgba(255, 182, 193, 0.9);
+	font-size: medium;
 }
 
 .nav {
 	grid-area: nav;
 	background-color: black;
 	padding: 20px 20px;
+	font-weight: 300;
 }
 
 .item a.activeLink {
 	color: rgb(208, 109, 133);
 	font-size: medium;
+	transition: color 0.5s ease, font-size 0.5s ease;
 }
