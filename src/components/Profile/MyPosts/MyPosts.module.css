@@ -55,3 +55,8 @@
 .postItem:last-child {
 	border-bottom: none;
 }
+
+.postsTitle {
+	font-weight: 300;
+	font-size: medium;
+}
