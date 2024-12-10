@@ -7,7 +7,7 @@ const Profile = () => {
 		<div className={s.profileContainer}>
 			<div className={s.profileImageContainer}>
 				<img
-					src='https://images.unsplash.com/photo-1551237135-a687125805b2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwc3Vuc2V0fGVufDB8fDB8fHww'
+					src='https://i.etsystatic.com/48940082/r/il/bdca75/6010586256/il_fullxfull.6010586256_nmcr.jpg'
 					alt='Sunset'
 				/>
 			</div>
