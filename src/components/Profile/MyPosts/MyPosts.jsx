@@ -2,13 +2,8 @@ import React from 'react'
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = () => {
-	let posts = [
-		{ id: 1, message: "Hi, it's my first post!", likesCounter: 22 },
-		{ id: 2, message: 'Today is the best day in my life', likesCounter: 15 },
-	]
-
-	let postData = posts.map(p => (
+const MyPosts = props => {
+	let postData = props.posts.map(p => (
 		<Post messages={p.message} likesCounter={p.likesCounter} />
 	))
 
