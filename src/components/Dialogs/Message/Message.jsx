@@ -2,7 +2,20 @@ import React from 'react'
 import s from './../Dialogs.module.css'
 
 const Message = props => {
-	return <div className={s.message}>{props.message}</div>
+	let newMessageElement = React.createRef()
+
+	let AddMessageElement = () => {
+		let text = newMessageElement.current.value
+		alert(text)
+	}
+
+	return (
+		<div>
+			<div className={s.message}>{props.message}</div>
+			<textarea ref={newMessageElement}></textarea>
+			<button onClick={AddMessageElement}>Send message</button>
+		</div>
+	)
 }
 
 export default Message
