@@ -12,7 +12,10 @@ const Message = props => {
 	return (
 		<div>
 			<div className={s.message}>{props.message}</div>
-			<textarea ref={newMessageElement}></textarea>
+			<textarea
+				ref={newMessageElement}
+				placeholder='write something here'
+			></textarea>
 			<button onClick={AddMessageElement}>Send message</button>
 		</div>
 	)
