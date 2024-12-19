@@ -11,8 +11,14 @@ const ProfileInfo = () => {
 				/>
 			</div>
 			<div className={s.avatarDescription}>
-				<h2>Photo + Name</h2>
-				<p>About you</p>
+				<div className={s.avatarPhoto}>
+					<img src='react.jpg' />
+				</div>
+				<h2>Vitaliy Yarmolovskyi</h2>
+				<p>
+					About project
+					<p>This social network was developed by me using React and Redux.</p>
+				</p>
 			</div>
 		</div>
 	)

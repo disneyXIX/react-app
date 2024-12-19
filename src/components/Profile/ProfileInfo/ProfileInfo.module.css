@@ -19,3 +19,9 @@
 .profileInfo {
 	font-weight: 300;
 }
+
+.avatarPhoto img {
+	height: 80px;
+	width: 80px;
+	border: 5px solid #000000;
+}
