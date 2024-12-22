@@ -1,5 +1,7 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_POST = 'ADD_POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT'
+const SEND_MESSAGE = 'SEND_MESSAGE'
 
 let store = {
 	_state: {
@@ -28,6 +30,7 @@ let store = {
 				{ id: 2, message: 'Hi,bro!' },
 				{ id: 3, message: 'Are you sure?' },
 			],
+			newMessageText: 'hi!!',
 		},
 	},
 
@@ -56,21 +59,30 @@ let store = {
 		} else if (action.type === UPDATE_NEW_POST_TEXT) {
 			this._state.profilePage.newPostText = action.newText
 			this._rerenderEntireTree(this._state)
+		} else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+			this._state.dialogsPage.newMessageText = action.text
+			this._rerenderEntireTree(this._state)
+		} else if (action.type === SEND_MESSAGE) {
+			let text = this._state.dialogsPage.newMessageText
+			this._state.dialogsPage.newMessageText = ''
+			this._state.dialogsPage.messages.push({ id: 4, message: text })
+			this._rerenderEntireTree(this._state)
 		}
 	},
 }
 
-export const addPostActionCreator = () => {
-	return {
-		type: ADD_POST,
-	}
-}
+export const addPostActionCreator = () => ({ type: ADD_POST })
 
-export const updateNewPostTextActionCreator = text => {
-	return {
-		type: UPDATE_NEW_POST_TEXT,
-		newText: text,
-	}
-}
+export const updateNewPostTextActionCreator = text => ({
+	type: UPDATE_NEW_POST_TEXT,
+	newText: text,
+})
+
+export const addMessageActionCreator = () => ({ type: SEND_MESSAGE })
+
+export const updateNewMessageTextActionCreator = text => ({
+	type: UPDATE_NEW_MESSAGE_TEXT,
+	text: text,
+})
 
 export default store
