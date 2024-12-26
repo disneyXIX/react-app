@@ -6,6 +6,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from './storeContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -13,11 +14,9 @@ export let rerenderEntireTree = state => {
 	root.render(
 		<React.StrictMode>
 			<BrowserRouter>
-				<App
-					state={state}
-					dispatch={store.dispatch.bind(store)}
-					store={store}
-				/>
+				<Provider store={store}>
+					<App />
+				</Provider>
 			</BrowserRouter>
 		</React.StrictMode>
 	)
