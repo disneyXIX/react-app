@@ -13,11 +13,11 @@ const Dialogs = props => {
 	let newMessageText = state.newMessageText
 
 	let AddMessageElement = () => {
-		props.addMessageActionCreator()
+		props.AddMessageElement()
 	}
 	let onMessageChange = e => {
 		let text = e.target.value
-		props.updateNewMessageTextActionCreator(text)
+		props.onMessageChange(text)
 	}
 
 	return (
