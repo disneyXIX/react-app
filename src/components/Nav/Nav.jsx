@@ -40,6 +40,14 @@ const Nav = () => {
 			</div>
 			<div className={s.item}>
 				<NavLink
+					to='/users'
+					className={({ isActive }) => (isActive ? s.activeLink : s.item)}
+				>
+					Users List
+				</NavLink>
+			</div>
+			<div className={s.item}>
+				<NavLink
 					to='/settings'
 					className={({ isActive }) => (isActive ? s.activeLink : s.item)}
 				>
