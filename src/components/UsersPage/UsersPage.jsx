@@ -1,46 +1,27 @@
 import React from 'react'
 import s from './UsersPage.module.css'
+import axios from 'axios'
+import UserIcon from '../../assets/images/emoji.userlist.png'
 
 const UsersPage = props => {
-	if (props.users.length === 0) {
-		props.setUsers([
-			{
-				id: 1,
-				avatarPhotoUrl:
-					'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=',
-				followed: true,
-				fullName: 'Yarmolovskyi Andriy',
-				status: 'working...',
-				location: { city: 'Lviv', country: 'Ukraine' },
-			},
-			{
-				id: 2,
-				avatarPhotoUrl:
-					'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=',
-				followed: false,
-				fullName: 'Gavenko Svyatoslav',
-				status: 'preparing for exams',
-				location: { city: 'Lviv', country: 'Ukraine' },
-			},
-			{
-				id: 3,
-				avatarPhotoUrl:
-					'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=',
-				followed: true,
-				fullName: 'Babenko Valeria',
-				status: 'designer.',
-				location: { city: 'Lviv', country: 'Ukraine' },
-			},
-		])
+	let getUsersList = () => {
+		if (props.users.length === 0) {
+			axios
+				.get('https://social-network.samuraijs.com/api/1.0/users')
+				.then(response => {
+					props.setUsers(response.data.items)
+				})
+		}
 	}
 
 	return (
 		<div>
+			<button onClick={getUsersList}>Load user list</button>
 			{props.users.map(u => (
 				<div key={u.id}>
 					<span>
 						<div className={s.photo}>
-							<img src={u.avatarPhotoUrl} />
+							<img src={u.photos.small != null ? u.photos.small : UserIcon} />
 						</div>
 
 						<div>
@@ -66,13 +47,13 @@ const UsersPage = props => {
 
 					<span>
 						<span>
-							<div> {u.fullName}</div>
+							<div> {u.name}</div>
 							<div> {u.status} </div>
 						</span>
 
 						<span>
-							<div> {u.location.country}</div>
-							<div> {u.location.city}</div>
+							<div> {'u.location.country'}</div>
+							<div> {'u.location.city'}</div>
 						</span>
 					</span>
 				</div>
