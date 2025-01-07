@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './UsersPage.module.css'
 import UserIcon from '../../assets/images/emoji.userlist.png'
+import { NavLink } from 'react-router-dom'
 
 let UsersPage = props => {
 	let pagersCount = Math.ceil(props.totalUserCount / props.pageSize)
@@ -31,7 +32,9 @@ let UsersPage = props => {
 				<div key={u.id}>
 					<span>
 						<div className={s.photo}>
-							<img src={u.photos.small != null ? u.photos.small : UserIcon} />
+							<NavLink to={'/profile' + u.id}>
+								<img src={u.photos.small != null ? u.photos.small : UserIcon} />
+							</NavLink>
 						</div>
 
 						<div>
