@@ -18,13 +18,9 @@ const ProfileInfo = props => {
 			<div className={s.avatarDescription}>
 				<div className={s.avatarPhoto}>
 					<img src={props.profile.photos.small} />
-					<img src='react.jpg' />
 				</div>
-				<h2>Vitaliy Yarmolovskyi</h2>
-				<p>
-					About project
-					<p>This social network was developed by me using React and Redux.</p>
-				</p>
+				<h2>{props.profile.fullName}</h2>
+				<p>{props.profile.aboutMe}</p>
 			</div>
 		</div>
 	)
