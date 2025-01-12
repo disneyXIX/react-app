@@ -17,7 +17,10 @@ class UsersPageContainer extends React.Component {
 		this.props.toogleIsFetching(true)
 		axios
 			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&сount=${this.props.pageSize}`
+				`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&сount=${this.props.pageSize}`,
+				{
+					withCredentials: true,
+				}
 			)
 			.then(response => {
 				this.props.toogleIsFetching(false)
@@ -30,7 +33,10 @@ class UsersPageContainer extends React.Component {
 		this.props.toogleIsFetching(true)
 		axios
 			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&сount=${this.props.pageSize}`
+				`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&сount=${this.props.pageSize}`,
+				{
+					withCredentials: true,
+				}
 			)
 			.then(response => {
 				this.props.toogleIsFetching(false)
