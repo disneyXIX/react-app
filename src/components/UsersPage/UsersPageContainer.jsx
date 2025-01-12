@@ -9,39 +9,27 @@ import {
 	toogleIsFetching,
 } from '../../Redux/usersPage-reducer'
 import UsersPage from './UsersPage'
-import axios from 'axios'
 import Preloader from '../common/Preloader/Preloader'
+import { usersAPI } from '../../api/api'
 
 class UsersPageContainer extends React.Component {
 	componentDidMount() {
 		this.props.toogleIsFetching(true)
-		axios
-			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&сount=${this.props.pageSize}`,
-				{
-					withCredentials: true,
-				}
-			)
-			.then(response => {
+		usersAPI
+			.getUsers(this.props.currentPage, this.props.pageSize)
+			.then(data => {
 				this.props.toogleIsFetching(false)
-				this.props.setUsers(response.data.items)
-				this.props.setTotalUserCount(response.data.totalCount)
+				this.props.setUsers(data.items)
+				this.props.setTotalUserCount(data.totalCount)
 			})
 	}
 
 	onPageChanged = pageNumber => {
 		this.props.toogleIsFetching(true)
-		axios
-			.get(
-				`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&сount=${this.props.pageSize}`,
-				{
-					withCredentials: true,
-				}
-			)
-			.then(response => {
-				this.props.toogleIsFetching(false)
-				this.props.setUsers(response.data.items)
-			})
+		usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+			this.props.toogleIsFetching(false)
+			this.props.setUsers(data.items)
+		})
 		this.props.setCurrentPage(pageNumber)
 	}
 
