@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-
 import Nav from './components/Nav/Nav'
 import { Route, Routes } from 'react-router-dom'
 import News from './components/News/News'
