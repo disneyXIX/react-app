@@ -41,11 +41,14 @@ let UsersPage = props => {
 						<div>
 							{u.followed ? (
 								<button
+									disabled={props.followingInProgress.some(id => id === u.id)}
 									onClick={() => {
+										props.toogleIsFollowing(true, u.id)
 										usersAPI.followDelete(u.id).then(data => {
 											if (data.resultCode == 0) {
 												props.unfollow(u.id)
 											}
+											props.toogleIsFollowing(false, u.id)
 										})
 									}}
 								>
@@ -53,11 +56,14 @@ let UsersPage = props => {
 								</button>
 							) : (
 								<button
+									disabled={props.followingInProgress.some(id => id === u.id)}
 									onClick={() => {
+										props.toogleIsFollowing(true, u.id)
 										usersAPI.followPost(u.id).then(data => {
 											if (data.resultCode == 0) {
 												props.follow(u.id)
 											}
+											props.toogleIsFollowing(false, u.id)
 										})
 									}}
 								>
