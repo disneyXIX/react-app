@@ -2,7 +2,6 @@ import React from 'react'
 import s from './UsersPage.module.css'
 import UserIcon from '../../assets/images/emoji.userlist.png'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../api/api'
 
 let UsersPage = props => {
 	let pagersCount = Math.ceil(props.totalUserCount / props.pageSize)
@@ -43,13 +42,7 @@ let UsersPage = props => {
 								<button
 									disabled={props.followingInProgress.some(id => id === u.id)}
 									onClick={() => {
-										props.toogleIsFollowing(true, u.id)
-										usersAPI.followDelete(u.id).then(data => {
-											if (data.resultCode == 0) {
-												props.unfollow(u.id)
-											}
-											props.toogleIsFollowing(false, u.id)
-										})
+										props.unfollowThunkCreator(u.id)
 									}}
 								>
 									Unfollow
@@ -58,13 +51,7 @@ let UsersPage = props => {
 								<button
 									disabled={props.followingInProgress.some(id => id === u.id)}
 									onClick={() => {
-										props.toogleIsFollowing(true, u.id)
-										usersAPI.followPost(u.id).then(data => {
-											if (data.resultCode == 0) {
-												props.follow(u.id)
-											}
-											props.toogleIsFollowing(false, u.id)
-										})
+										props.followThunkCreator(u.id)
 									}}
 								>
 									Follow

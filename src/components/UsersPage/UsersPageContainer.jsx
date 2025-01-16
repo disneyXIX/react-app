@@ -8,32 +8,21 @@ import {
 	setTotalUserCount,
 	toogleIsFetching,
 	toogleIsFollowing,
+	getUsersThunkCreator,
+	unfollowThunkCreator,
+	followThunkCreator,
 } from '../../Redux/usersPage-reducer'
 import UsersPage from './UsersPage'
 import Preloader from '../common/Preloader/Preloader'
-import { usersAPI } from '../../api/api'
 
 class UsersPageContainer extends React.Component {
 	componentDidMount() {
-		this.props.toogleIsFetching(true)
-		usersAPI
-			.getUsers(this.props.currentPage, this.props.pageSize)
-			.then(data => {
-				this.props.toogleIsFetching(false)
-				this.props.setUsers(data.items)
-				this.props.setTotalUserCount(data.totalCount)
-			})
+		this.props.getUsers(this.props.currentPage, this.props.pageSize)
 	}
 
 	onPageChanged = pageNumber => {
-		this.props.toogleIsFetching(true)
-		usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-			this.props.toogleIsFetching(false)
-			this.props.setUsers(data.items)
-		})
-		this.props.setCurrentPage(pageNumber)
+		this.props.getUsers(pageNumber, this.props.pageSize)
 	}
-
 	render() {
 		return (
 			<>
@@ -48,6 +37,8 @@ class UsersPageContainer extends React.Component {
 					unfollow={this.props.unfollow}
 					toogleIsFollowing={this.props.toogleIsFollowing}
 					followingInProgress={this.props.followingInProgress}
+					unfollowThunkCreator={this.props.unfollowThunkCreator}
+					followThunkCreator={this.props.followThunkCreator}
 				/>
 			</>
 		)
@@ -73,4 +64,7 @@ export default connect(mapStateToProps, {
 	setTotalUserCount,
 	toogleIsFetching,
 	toogleIsFollowing,
+	getUsers: getUsersThunkCreator,
+	unfollowThunkCreator,
+	followThunkCreator,
 })(UsersPageContainer)

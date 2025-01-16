@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api'
+
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
@@ -95,5 +97,40 @@ export const toogleIsFollowing = (isFetching, userID) => ({
 	isFetching,
 	userID,
 })
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+	return dispatch => {
+		dispatch(toogleIsFetching(true))
+		usersAPI.getUsers(currentPage, pageSize).then(data => {
+			dispatch(toogleIsFetching(false))
+			dispatch(setUsers(data.items))
+			dispatch(setTotalUserCount(data.totalCount))
+		})
+	}
+}
+
+export const unfollowThunkCreator = userID => {
+	return dispatch => {
+		dispatch(toogleIsFollowing(true, userID))
+		usersAPI.followDelete(userID).then(data => {
+			if (data.resultCode == 0) {
+				dispatch(unfollow(userID))
+			}
+			dispatch(toogleIsFollowing(false, userID))
+		})
+	}
+}
+
+export const followThunkCreator = userID => {
+	return dispatch => {
+		dispatch(toogleIsFollowing(true, userID))
+		usersAPI.followPost(userID).then(data => {
+			if (data.resultCode == 0) {
+				dispatch(follow(userID))
+			}
+			dispatch(toogleIsFollowing(false, userID))
+		})
+	}
+}
 
 export default usersPageReducer
