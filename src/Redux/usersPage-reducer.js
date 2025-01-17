@@ -98,10 +98,11 @@ export const toogleIsFollowing = (isFetching, userID) => ({
 	userID,
 })
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
+export const getUsersThunkCreator = (pageNumber, pageSize) => {
 	return dispatch => {
+		dispatch(setCurrentPage(pageNumber))
 		dispatch(toogleIsFetching(true))
-		usersAPI.getUsers(currentPage, pageSize).then(data => {
+		usersAPI.getUsers(pageNumber, pageSize).then(data => {
 			dispatch(toogleIsFetching(false))
 			dispatch(setUsers(data.items))
 			dispatch(setTotalUserCount(data.totalCount))
